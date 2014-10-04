@@ -17,10 +17,57 @@
  * under the License.
  */
 var app = {
+
+    // Fields
+    amount = 0,
+
     // Application Constructor
     initialize: function() {
         this.bindEvents();
+        this.firstRun();
     },
+
+    getPhoneId: function() {
+        return window.localStorage('phone_id');
+    },
+
+    recordTransaction: function (sender_id) {
+        var amt = this.amount;
+        var receiver_id = this.getPhoneId();
+        cordovaHTTP.post('http://bit-bump.me/transaction', 
+            {
+                'sender'  : sender_id,
+                'receiver': receiver_id,
+                'amount'  : amt
+            },
+            function HTTPSuccess (response) {
+                this.showSuccess(response);
+            },
+
+            function HTTPFailure (response) {
+                this.showFailure(response);
+            }
+    }
+
+    },
+
+
+    firstRun: function() {
+        if (window.localStorage('phone_id') == '') {
+            //do some stuff if has not loaded before
+            window.localStorage('phone_id', this.generateId());
+        }
+    },
+
+    generateId: function() {
+        var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+        var id = '';
+        for (var i=0; i < 32; i++) {
+            id += alphabet[Math.floor(Math.random() * alphabet.length)];
+        }
+        return id;
+    },
+
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
@@ -37,9 +84,10 @@ var app = {
 
         // Read NDEF formatted NFC Tags
         nfc.addNdefListener (
-            function (nfcEvent) {
+            function nfcListener (nfcEvent) {
                 var tag = nfcEvent.tag,
-                    ndefMessage = tag.ndefMessage;
+                    ndefMessage = tag.ndefMessage,
+                    sender_id;
 
                 // dump the raw json of the message
                 // note: real code will need to decode
@@ -49,12 +97,13 @@ var app = {
                 // assuming the first record in the message has 
                 // a payload that can be converted to a string.
                 alert(nfc.bytesToString(ndefMessage[0].payload).substring(3));
-                id = nfc.bytesToString(ndefMessage[0].payload).substring(3);
+                sender_id = nfc.bytesToString(ndefMessage[0].payload).substring(3);
+                recordTransaction(sender_id);
             }, 
-            function () { // success callback
+            function nfcSuccess() { // success callback
                 alert("Waiting for NDEF tag");
             },
-            function (error) { // error callback
+            function nfcError (error) { // error callback
                 alert("Error adding NDEF listener " + JSON.stringify(error));
             }
         );

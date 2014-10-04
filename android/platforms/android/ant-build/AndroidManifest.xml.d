@@ -1,2 +1,2 @@
-/Users/david/Projects/bitbump/android/platforms/android/ant-build/AndroidManifest.xml : \
-/Users/david/Projects/bitbump/android/platforms/android/AndroidManifest.xml \
+/Users/nkp/projects/bitbump/android/platforms/android/ant-build/AndroidManifest.xml : \
+/Users/nkp/projects/bitbump/android/platforms/android/AndroidManifest.xml \
