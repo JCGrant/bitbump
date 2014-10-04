@@ -97,8 +97,7 @@ var app = {
                 // assuming the first record in the message has 
                 // a payload that can be converted to a string.
                 alert(nfc.bytesToString(ndefMessage[0].payload).substring(3));
-                sender_id = nfc.bytesToString(ndefMessage[0].payload).substring(3);
-                recordTransaction(sender_id);
+                id = nfc.bytesToString(ndefMessage[0].payload).substring(3);
             }, 
             function nfcSuccess() { // success callback
                 alert("Waiting for NDEF tag");
