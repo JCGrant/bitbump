@@ -1,0 +1,21 @@
+/Users/david/Projects/bitbump/android/platforms/android/ant-build/classes.dex : \
+/Users/david/Projects/bitbump/android/platforms/android/ant-build/classes/com/chariotsolutions/nfc/plugin/NfcPlugin$1.class \
+/Users/david/Projects/bitbump/android/platforms/android/ant-build/classes/com/chariotsolutions/nfc/plugin/NfcPlugin$2.class \
+/Users/david/Projects/bitbump/android/platforms/android/ant-build/classes/com/chariotsolutions/nfc/plugin/NfcPlugin$3.class \
+/Users/david/Projects/bitbump/android/platforms/android/ant-build/classes/com/chariotsolutions/nfc/plugin/NfcPlugin$4.class \
+/Users/david/Projects/bitbump/android/platforms/android/ant-build/classes/com/chariotsolutions/nfc/plugin/NfcPlugin$5.class \
+/Users/david/Projects/bitbump/android/platforms/android/ant-build/classes/com/chariotsolutions/nfc/plugin/NfcPlugin$6.class \
+/Users/david/Projects/bitbump/android/platforms/android/ant-build/classes/com/chariotsolutions/nfc/plugin/NfcPlugin$7.class \
+/Users/david/Projects/bitbump/android/platforms/android/ant-build/classes/com/chariotsolutions/nfc/plugin/NfcPlugin$8.class \
+/Users/david/Projects/bitbump/android/platforms/android/ant-build/classes/com/chariotsolutions/nfc/plugin/NfcPlugin$9.class \
+/Users/david/Projects/bitbump/android/platforms/android/ant-build/classes/com/chariotsolutions/nfc/plugin/NfcPlugin.class \
+/Users/david/Projects/bitbump/android/platforms/android/ant-build/classes/com/chariotsolutions/nfc/plugin/Util.class \
+/Users/david/Projects/bitbump/android/platforms/android/ant-build/classes/me/bit_bump/bitbump/BuildConfig.class \
+/Users/david/Projects/bitbump/android/platforms/android/ant-build/classes/me/bit_bump/bitbump/HelloCordova.class \
+/Users/david/Projects/bitbump/android/platforms/android/ant-build/classes/me/bit_bump/bitbump/R$attr.class \
+/Users/david/Projects/bitbump/android/platforms/android/ant-build/classes/me/bit_bump/bitbump/R$drawable.class \
+/Users/david/Projects/bitbump/android/platforms/android/ant-build/classes/me/bit_bump/bitbump/R$string.class \
+/Users/david/Projects/bitbump/android/platforms/android/ant-build/classes/me/bit_bump/bitbump/R$xml.class \
+/Users/david/Projects/bitbump/android/platforms/android/ant-build/classes/me/bit_bump/bitbump/R.class \
+/Users/david/Projects/bitbump/android/platforms/android/ant-build/classes/org/apache/cordova/api/Dummy.class \
+/Users/david/Projects/bitbump/android/platforms/android/ant-build/dexedLibs/classes-226acccd2fecf45dd1af645baa454f28.jar \
