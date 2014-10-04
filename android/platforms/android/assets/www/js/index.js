@@ -19,53 +19,40 @@
 var app = {
 
     // Fields
-    amount = 0,
+    mode: 'receive',
 
     // Application Constructor
     initialize: function() {
         this.bindEvents();
-        this.firstRun();
     },
 
-    getPhoneId: function() {
-        return window.localStorage('phone_id');
-    },
-
-    recordTransaction: function (sender_id) {
-        var amt = this.amount;
-        var receiver_id = this.getPhoneId();
-        cordovaHTTP.post('http://bit-bump.me/transaction', 
-            {
-                'sender'  : sender_id,
-                'receiver': receiver_id,
-                'amount'  : amt
-            },
-            function HTTPSuccess (response) {
-                this.showSuccess(response);
-            },
-
-            function HTTPFailure (response) {
-                this.showFailure(response);
-            }
-    }
-
-    },
-
-
-    firstRun: function() {
-        if (window.localStorage('phone_id') == '') {
-            //do some stuff if has not loaded before
-            window.localStorage('phone_id', this.generateId());
-        }
-    },
-
-    generateId: function() {
-        var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
-        var id = '';
-        for (var i=0; i < 32; i++) {
-            id += alphabet[Math.floor(Math.random() * alphabet.length)];
-        }
-        return id;
+    send: function(ring_id) {
+      alert('send function called');
+      var sender_id, receiver_id;
+      var phone_id = 'phone';
+      var amount = 10;
+      if (app.mode === 'send') {
+        sender_id = phone_id;
+        receiver_id = ring_id;
+      } else {
+        sender_id = ring_id;
+        receiver_id = phone_id;
+      }
+      alert('sending');
+      cordovaHTTP.post('http://188.226.239.28:5000/transaction',
+          {
+            'sender_id': sender_id,
+            'receiver_id': receiver_id,
+            'amount': amount
+          }, {},
+          function (data) {
+            alert(data);
+          },
+          function (data) {
+            alert(data);
+          }
+      );
+      alert('end of function');
     },
 
     // Bind Event Listeners
@@ -89,15 +76,9 @@ var app = {
                     ndefMessage = tag.ndefMessage,
                     sender_id;
 
-                // dump the raw json of the message
-                // note: real code will need to decode
-                // the payload from each record
-                alert(JSON.stringify(ndefMessage));
-
-                // assuming the first record in the message has 
-                // a payload that can be converted to a string.
-                alert(nfc.bytesToString(ndefMessage[0].payload).substring(3));
-                id = nfc.bytesToString(ndefMessage[0].payload).substring(3);
+                var id = nfc.bytesToString(ndefMessage[0].payload).substring(3);
+                alert(id);
+                app.send(id);
             }, 
             function nfcSuccess() { // success callback
                 alert("Waiting for NDEF tag");

@@ -23,38 +23,49 @@
         <meta name="format-detection" content="telephone=no" />
         <meta name="msapplication-tap-highlight" content="no" />
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+                <!--<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=1080px, height=1920px, target-densitydpi=high-dpi" />-->
+
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <link rel="stylesheet" type="text/css" href="css/material.min.css" />
-        <link rel="stylesheet" type="text/css" href="css/material-wfont.min.css" />
-        <link rel="stylesheet" type="text/css" href="css/ripples.min.css" />
-        <script type="text/javascript" src="js/zepto.js"></script>
+        
+        <!--<link rel="stylesheet" type="text/css" href="css/index.css" />-->
+        <!--<link rel="stylesheet" type="text/css" href="css/material.min.css" />-->
+        <!--<link rel="stylesheet" type="text/css" href="css/material-wfont.min.css" />-->
+        <!--<link rel="stylesheet" type="text/css" href="css/ripples.min.css" />-->
+        <link rel="stylesheet" type="text/css" href="css/layout.css" />
+        <script type="text/javascript" src="js/jquery.js"></script>
         <title>BitBump</title>
     </head>
     <body>
-        <div class="app">
-            <h1>Bit Bump</h1>
-            <div data-dom-cache="false" data-role="page">
-                <div data-role="header" data-theme="b">
-                    <h1 id="header">Searching for GPS</h1>
-                    <a data-role="button" class="ui-btn-right" onclick="showAbout()">About</a>
-                </div>
-                
-                <div data-role="content" style="padding:0;">
-                    <div id="map" style="width:100%;height:100%; z-index:50">
-                    </div>
-
-                </div>
-                <div data-role="footer" data-theme="b" data-position="fixed" >
-                    <h4>Google Maps</h4>
-                </div>
+      <div id="content">
+          <div id="menu-wrapper">
+            <p id="balance">Balance</p>
+            <p id="value">&pound;18.13</p>
+            <p id="btc">(0.08238 BTC)</p>
+            <p><button id="open-receive-tab">Receive Money</button></p>
+            <p><button id="open-send-tab">Send Money</button></p>
+          </div>
+          <div id="receive-box-layer">
+            <div id="receive-box-layer-wrapper">
+              <div id="receive-box" style="top:-1000px">
+                <form name="receive">
+                  <p>Amount (&pound;)</p>
+                  <p><input id="amount" type="text" placeholder="&pound;0.00" /></p>
+                  <p><input id="button" type="submit" value="Receive" /></p>
+                </form>
+              </div>
             </div>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
+          </div>
         </div>
+        <script src=js/jquery.js></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        <script>
+          $("#receive-box-layer").hide();
+
+          // Display the receive money tab when the right button is clicked
+          $("#open-receive-tab").click(function() {
+            $("#receive-box-layer").fadeIn();
+          });
+        </script>
     </body>
 </html>
