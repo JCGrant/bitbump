@@ -10,6 +10,8 @@
 /Users/nkp/projects/bitbump/android/platforms/android/ant-build/classes/com/chariotsolutions/nfc/plugin/NfcPlugin$9.class \
 /Users/nkp/projects/bitbump/android/platforms/android/ant-build/classes/com/chariotsolutions/nfc/plugin/NfcPlugin.class \
 /Users/nkp/projects/bitbump/android/platforms/android/ant-build/classes/com/chariotsolutions/nfc/plugin/Util.class \
+/Users/nkp/projects/bitbump/android/platforms/android/ant-build/classes/com/darktalker/cordova/webviewsetting/WebviewSetting$1.class \
+/Users/nkp/projects/bitbump/android/platforms/android/ant-build/classes/com/darktalker/cordova/webviewsetting/WebviewSetting.class \
 /Users/nkp/projects/bitbump/android/platforms/android/ant-build/classes/com/github/kevinsawicki/http/HttpRequest$1.class \
 /Users/nkp/projects/bitbump/android/platforms/android/ant-build/classes/com/github/kevinsawicki/http/HttpRequest$10.class \
 /Users/nkp/projects/bitbump/android/platforms/android/ant-build/classes/com/github/kevinsawicki/http/HttpRequest$2.class \

@@ -13,6 +13,13 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/com.darktalker.cordova.webviewsetting/www/WebviewSetting.js",
+        "id": "com.darktalker.cordova.webviewsetting.WebviewSetting",
+        "clobbers": [
+            "plugin.webviewSetting"
+        ]
+    },
+    {
         "file": "plugins/org.apache.cordova.file/www/DirectoryEntry.js",
         "id": "org.apache.cordova.file.DirectoryEntry",
         "clobbers": [
@@ -164,6 +171,7 @@ module.exports.metadata =
 {
     "com.chariotsolutions.nfc.plugin": "0.6.0",
     "com.synconset.cordovaHTTP": "0.1.3",
+    "com.darktalker.cordova.webviewsetting": "0.1.0",
     "org.apache.cordova.file": "1.3.1"
 }
 // BOTTOM OF METADATA

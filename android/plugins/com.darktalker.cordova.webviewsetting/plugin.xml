@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="com.darktalker.cordova.webviewsetting" version="0.1.0" 
+    xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <name>ViewportFix</name>
+    <description>cordova plugin to fix viewport in android</description>
+    <license>MIT</license>
+    <keywords>cordova,viewport,autoplay</keywords>
+    <repo>https://github.com/gitawego/cordova-webview-setting</repo>
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>
+    <js-module src="www/WebviewSetting.js" name="WebviewSetting">
+        <clobbers target="plugin.webviewSetting"/>
+    </js-module>
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="WebviewSetting">
+                <param name="android-package" value="com.darktalker.cordova.webviewsetting.WebviewSetting" />
+            </feature>
+        </config-file>
+        <source-file src="src/android/WebviewSetting.java" target-dir="src/com/darktalker/cordova/webviewsetting" />
+    </platform>
+   
+</plugin>

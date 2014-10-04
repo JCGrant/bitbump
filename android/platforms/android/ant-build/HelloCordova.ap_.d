@@ -48,10 +48,13 @@
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/js/jquery.js \
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/js/zepto.js \
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/plugins/com.chariotsolutions.nfc.plugin \
+/Users/nkp/projects/bitbump/android/platforms/android/assets/www/plugins/com.darktalker.cordova.webviewsetting \
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/plugins/com.synconset.cordovaHTTP \
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/plugins/org.apache.cordova.file \
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/plugins/com.chariotsolutions.nfc.plugin/www \
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/plugins/com.chariotsolutions.nfc.plugin/www/phonegap-nfc.js \
+/Users/nkp/projects/bitbump/android/platforms/android/assets/www/plugins/com.darktalker.cordova.webviewsetting/www \
+/Users/nkp/projects/bitbump/android/platforms/android/assets/www/plugins/com.darktalker.cordova.webviewsetting/www/WebviewSetting.js \
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/plugins/com.synconset.cordovaHTTP/www \
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/plugins/com.synconset.cordovaHTTP/www/cordovaHTTP.js \
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/plugins/org.apache.cordova.file/www \

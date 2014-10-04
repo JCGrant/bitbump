@@ -12,6 +12,9 @@
     <feature name="CordovaHttpPlugin">
         <param name="android-package" value="com.synconset.CordovaHttpPlugin" />
     </feature>
+    <feature name="WebviewSetting">
+        <param name="android-package" value="com.darktalker.cordova.webviewsetting.WebviewSetting" />
+    </feature>
     <name>HelloCordova</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.

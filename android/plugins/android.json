@@ -21,6 +21,10 @@
                         {
                             "xml": "<feature name=\"CordovaHttpPlugin\"><param name=\"android-package\" value=\"com.synconset.CordovaHttpPlugin\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"WebviewSetting\"><param name=\"android-package\" value=\"com.darktalker.cordova.webviewsetting.WebviewSetting\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -52,6 +56,9 @@
             "PACKAGE_NAME": "me.bit_bump.bitbump"
         },
         "com.synconset.cordovaHTTP": {
+            "PACKAGE_NAME": "me.bit_bump.bitbump"
+        },
+        "com.darktalker.cordova.webviewsetting": {
             "PACKAGE_NAME": "me.bit_bump.bitbump"
         }
     },
