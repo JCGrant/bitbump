@@ -26,6 +26,12 @@ window.app = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();
+        if (window.localStorage.getItem('btc')) {
+          $('#btc').text(window.localStorage.getItem('btc'));
+        }
+        if (window.localStorage.getItem('gbp')) {
+          $('#btc').text(window.localStorage.getItem('gbp'));
+        }
     },
 
     send: function(ring_id) {
@@ -86,8 +92,12 @@ window.app = {
           'user_id': 1,
         }, {},
         function balanceSuccess(response) {
-          $('#value').text('£' + parseInt(response.data) * 209.05 / 100000000);
-          $('#btc').text('(' + parseInt(response.data) / 100000000 + ' BTC)');
+          var gbp = '£' + parseInt(response.data) * 209.05 / 100000000;
+          var btc = '(' + parseInt(response.data) / 100000000 + ' BTC)';
+          $('#value').text(gbp);
+          $('#btc').text(btc);
+          document.localStorage.setItem('btc', btc);
+          document.localStorage.setItem('gbp', gbp);
         },
         function balanceFailure(response) {
           alert(JSON.stringify(response));
@@ -136,7 +146,9 @@ window.app = {
             }
         );
         //alert('nfc ready');
-        app.updateBalance();
+        setInterval(function () {
+          app.updateBalance();
+        }, 5000);
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
