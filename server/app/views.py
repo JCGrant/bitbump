@@ -20,6 +20,7 @@ def do_transaction():
     send_message("You successfully received {} from {}!".format(
         amount, sender.first_name
     ), receiver)
+    return 'OK!'
 
 @app.route('/users', methods=["POST"])
 def create_new_user():
@@ -29,6 +30,7 @@ def create_new_user():
     phone_number = request.form['phone_number']
 
     User.create(first_name, last_name, email, phone_number)
+    return 'OK!'
 
 @app.route('/balance')
 def get_balance():
