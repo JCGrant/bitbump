@@ -12,7 +12,8 @@ body
   padding: 0;
 
   background: url("../img/background.jpg") no-repeat;
-  font-family: "Helvetica Neue";
+  background-size: cover;
+  font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
 }
 
 div#menu-wrapper
