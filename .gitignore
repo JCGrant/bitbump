@@ -33,3 +33,6 @@ proguard/
 
 # Databases
 *.db
+
+# PyCharm files
+.idea
