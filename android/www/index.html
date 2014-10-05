@@ -22,7 +22,7 @@
     <meta charset="utf-8" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalabe=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/layout.css" />
     <script type="text/javascript" src="js/jquery.js"></script>
@@ -43,10 +43,16 @@
       <div id="receive-box-layer" class="hidden opacity">
         <div id="dialog-box-wrapper">
           <div id="dialog-box">
-            <form name="receive">
+            <form id="receive">
               <p>Amount (&pound;)</p>
               <p><input id="amount" type="tel" placeholder="&pound;0.00" /></p>
-              <p><input id="receive-button" type="submit" value="Receive" /></p>
+              <div id="receive-confirm-amount">
+                <p><input id="button" type="submit" value="Receive" /></p>
+              </div>
+              <div id="receive-wait-for-ring" class="hidden">
+                <p id="instructions">Bump the payers NFC Ring against this device</p>
+                <img src="img/preload.gif" />
+              </div>
             </form>
           </div>
         </div>
@@ -56,10 +62,16 @@
       <div id="send-box-layer" class="hidden opacity">
         <div id="dialog-box-wrapper">
           <div id="dialog-box">
-            <form name="send">
+            <form id="send">
               <p>Amount (&pound;)</p>
               <p><input id="amount" type="tel" placeholder="&pound;0.00" /></p>
-              <p><input id="send-button" type="submit" value="Send" /></p>
+              <div id="send-confirm-amount">
+                <p><input id="button" type="submit" value="Send" /></p>
+              </div>
+              <div id="send-wait-for-ring" class="hidden">
+                <p id="instructions">Bump the payees NFC Ring against this device</p>
+                <img src="img/preload.gif" />
+              </div>
             </form>
           </div>
         </div>
@@ -77,6 +89,15 @@
         });
       });
 
+      // Start waiting for the ring when the form is submitted
+      $('#receive').submit(function(e) {
+        e.preventDefault()
+        $('#receive-wait-for-ring').removeClass('hidden');
+        $('#receive-confirm-amount').addClass('hidden');
+
+        // TODO: change app to "waiting" state
+      });
+
       // Display the send money tab when clicked
       $('#open-send-tab').click(function(e) {
         app.mode = 'send';
@@ -84,6 +105,13 @@
         window.requestAnimationFrame(function() {
           $('#send-box-layer').removeClass('opacity');
         });
+      });
+
+      // Start waiting for the ring when the form is submitted
+      $('#send').submit(function(e) {
+        e.preventDefault()
+        $('#send-wait-for-ring').removeClass('hidden');
+        $('#send-confirm-amount').addClass('hidden');
       });
     </script>
   </body>

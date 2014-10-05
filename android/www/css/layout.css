@@ -164,8 +164,7 @@ div#dialog-box input#amount
   border: solid 1px #606060;
 }
 
-div#dialog-box input#receive-button,
-div#dialog-box input#send-button
+div#dialog-box input#button
 {
   display: inline-block;
   text-align: center;
@@ -190,4 +189,11 @@ div#dialog-box input#send-button
   background-image: -moz-linear-gradient(bottom, #225375, #44a6ea);
   background-image: -o-linear-gradient(bottom, #225375, #44a6ea);
   background-image: linear-gradient(to top, #225375, #44a6ea);
+}
+
+#instructions
+{
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 14px;
 }
