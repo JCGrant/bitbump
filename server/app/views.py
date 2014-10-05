@@ -7,7 +7,7 @@ from twilio_ import send_message
 import sendgrid
 sg = sendgrid.SendGridClient(os.environ['SGUSER'], os.environ['SGPW'])
 
-def send_email(receiver, text):
+def send_email(text, receiver):
     message = sendgrid.Mail()
     message.add_to('%s %s <%s>' % (receiver.first_name, receiver.last_name, receiver.email))
     message.set_subject('Payment Confirmation!')
