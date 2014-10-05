@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from app import app
 from flask import request
 from models import User
@@ -17,10 +19,10 @@ def do_transaction():
         return response.get('error'), 400
 
     amount_in_pounds = amount * 209.5 / 100000000
-    send_message("You successfully paid {} to {}!".format(
+    send_message("You successfully paid £{:.2f} to {}!".format(
         amount_in_pounds, receiver.first_name
     ), sender)
-    send_message("You successfully received {} from {}!".format(
+    send_message("You successfully received £{:.2f} from {}!".format(
         amount_in_pounds, sender.first_name
     ), receiver)
     return 'OK!', 200
