@@ -86,8 +86,8 @@ window.app = {
           'user_id': 1,
         }, {},
         function balanceSuccess(response) {
-          $('#value').text('£' + parseInt(response.data) * 209.05 * 1000000);
-          $('#btc').text('(' + response.data + ' BTC)');
+          $('#value').text('£' + parseInt(response.data) * 209.05 / 100000000);
+          $('#btc').text('(' + parseInt(response.data) / 100000000 + ' BTC)');
         },
         function balanceFailure(response) {
           alert(JSON.stringify(response));
@@ -95,7 +95,7 @@ window.app = {
     },
 
     gbpToSatoshi: function (gbp) {
-      return Math.floor(gbp * 1000000 / 209.05);
+      return Math.floor(gbp * 100000000 / 209.05);
     },
 
     // Bind Event Listeners
