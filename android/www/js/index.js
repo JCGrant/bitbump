@@ -58,12 +58,15 @@ window.app = {
           }, {},
           function (data) {
             app.state = 'finished';
-            console.log('finished');
+            console.log('>>>>>>>>>>>>>>>>>>>>finished');
             $('#payment-success').removeClass('hidden');
             setTimeout(function () {
               app.state = 'idle';
               $('#payment-success').addClass('hidden');
-              $('#amount-box-layer').addClass('hidden').addClass('opacity');
+              $('#amount-box-layer').addClass('hidden')
+              window.requestAnimationFramme(function () {
+                $('#amount-box-layer').addClass('opacity');
+              });
               $('#confirm-amount').removeClass('hidden');
               app.updateBalance();
             }, 2000);

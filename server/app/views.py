@@ -34,17 +34,17 @@ def do_transaction():
         amount_in_pounds, receiver.first_name
     ), sender)
     
-    send_email("You successfully paid £{:.2f} to {}!".format(
-        amount_in_pounds, receiver.first_name
-    ), sender)
+    #send_email("You successfully paid £{:.2f} to {}!".format(
+    #    amount_in_pounds, receiver.first_name
+    #), sender)
 
     send_message("You successfully received £{:.2f} from {}!".format(
         amount_in_pounds, sender.first_name
     ), receiver)
 
-    send_email("You successfully received £{:.2f} from {}!".format(
-        amount_in_pounds, sender.first_name
-    ), receiver)
+    #send_email("You successfully received £{:.2f} from {}!".format(
+    #    amount_in_pounds, sender.first_name
+    #), receiver)
 
     return 'OK!', 200
 
