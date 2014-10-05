@@ -1,7 +1,7 @@
 html
 {
   width: 360px;
-  height: 640px;
+  height: 567px;
 }
 
 button
@@ -13,7 +13,7 @@ button
 body
 {
   width: 360px;
-  height: 640px;
+  height: 567px;
   margin: 0;
   padding: 0;
 
@@ -27,7 +27,7 @@ div#menu-wrapper
   position: absolute;
   float: left;
   width: 360px;
-  height: 640px;
+  height: 567px;
   color: #fff;
 
   text-align: center;
@@ -103,7 +103,7 @@ div#receive-box-layer
 div#receive-box-layer-wrapper
 {
   width: 360px;
-  height: 640px;
+  height: 567px;
 
   background-color: rgba(0, 0, 0, 0.5);
 
