@@ -43,7 +43,7 @@
             <p><button href="#" id="open-receive-tab">Receive</button></p>
             <p><button href="#" id="open-send-tab">Send</button></p>
           </div>
-          <div id="receive-box-layer" style="opacity: 0">
+          <div id="receive-box-layer" class="hidden opacity">
             <div id="receive-box-layer-wrapper">
               <div id="receive-box">
                 <form name="receive">
@@ -62,11 +62,17 @@
           // Display the receive money tab when the right button is clicked
           $('#open-receive-tab').click(function(e) {
             app.mode = 'receive';
-            $('#receive-box-layer').css({'opacity': 1});
+            $('#receive-box-layer').removeClass('hidden')
+            window.requestAnimationFrame(function() {
+              $('#receive-box-layer').removeClass('opacity');
+            });
           });
           $('#open-send-tab').click(function(e) {
             app.mode = 'send';
-            $('#receive-box-layer').css({'opacity': 1});
+            $('#receive-box-layer').removeClass('hidden')
+            window.requestAnimationFrame(function() {
+              $('#receive-box-layer').removeClass('opacity');
+            });
           });
         </script>
     </body>

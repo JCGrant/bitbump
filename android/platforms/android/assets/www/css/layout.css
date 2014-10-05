@@ -18,7 +18,7 @@ body
   padding: 0;
 
   background: url("../img/background.jpg") no-repeat;
-  background-size: cover;
+  background-size: 360px 567px;
   font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
 }
 
@@ -92,7 +92,15 @@ div#receive-box-layer
 {
   position: absolute;
   float: left;
-  -webkit-transition: opacity 1s linear;
+  -webkit-transition: opacity 0.4s linear;
+}
+
+.hidden {
+  display: none;
+}
+
+.opacity {
+  opacity: 0;
 }
 
 div#receive-box-layer-wrapper
