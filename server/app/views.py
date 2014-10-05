@@ -12,7 +12,7 @@ def do_transaction():
     sender = User.get(sender_id)
     receiver = User.get(receiver_id)
 
-    sender.pay(receiver_id, amount)
+    sender.pay(receiver, amount)
 
     send_message("You successfully paid {} to {}!".format(
         amount, receiver.first_name

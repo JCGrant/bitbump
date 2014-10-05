@@ -4,27 +4,29 @@ from block_chain import Wallet
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(20))
-    last_name = db.Column(db.String(20))
+    first_name = db.Column(db.String(20), nullable=False)
+    last_name = db.Column(db.String(20), nullable=False)
     email = db.Column(db.String(120), unique=True)
     phone_number = db.Column(db.String(16), unique=True)
-    blockchain_guid = db.Column(db.String(36))
-    blockchain_password = db.Column(db.String(64))
+    blockchain_guid = db.Column(db.String(36), nullable=False)
+    blockchain_password = db.Column(db.String(64), nullable=False)
+    blockchain_address = db.Column(db.String(100), nullable=False)
 
     def __init__(self, first_name, last_name, email, phone_number,
-                 blockchain_guid, blockchain_password):
+                 blockchain_guid, blockchain_password, blockchain_address):
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
         self.phone_number = phone_number
         self.blockchain_guid = blockchain_guid
         self.blockchain_password = blockchain_password
+        self.blockchain_address = blockchain_address
 
     @staticmethod
     def create(first_name, last_name, email, phone_number,
-               blockchain_guid=None, blockchain_password=None):
+               blockchain_guid=None, blockchain_password=None, blockchain_address):
         u = User(first_name, last_name, email, phone_number,
-                 blockchain_guid, blockchain_password)
+                 blockchain_guid, blockchain_password, blockchain_address)
         db.session.add(u)
         db.session.commit()
 
@@ -52,8 +54,8 @@ class User(db.Model):
     def wallet(self):
         return Wallet(self.blockchain_guid, self.blockchain_password)
 
-    def pay(self, to_address, amount):
-        return self.wallet.make_transaction(to_address, amount)
+    def pay(self, receiver, amount):
+        return self.wallet.make_transaction(receiver.blockchain_address, amount)
 
 
     def get_balance(self):
