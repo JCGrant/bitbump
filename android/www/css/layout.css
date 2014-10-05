@@ -4,6 +4,12 @@ html
   height: 640px;
 }
 
+button
+{
+  border: none;
+  outline:none;
+}
+
 body
 {
   width: 360px;
@@ -86,6 +92,12 @@ div#receive-box-layer
 {
   position: absolute;
   float: left;
+  -webkit-transition: opacity 1s linear;
+}
+
+.hidden
+{
+  opacity: 0;
 }
 
 div#receive-box-layer-wrapper

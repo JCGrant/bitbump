@@ -30,7 +30,7 @@ var app = {
       alert('send function called');
       var sender_id, receiver_id;
       var phone_id = 'phone';
-      var amount = 10;
+      var amount = $('#amount').val();
       if (app.mode === 'send') {
         sender_id = phone_id;
         receiver_id = ring_id;

@@ -4,6 +4,12 @@ html
   height: 100%;
 }
 
+button
+{
+  border: none;
+  outline:none;
+}
+
 body
 {
   width: 100%;
@@ -12,7 +18,8 @@ body
   padding: 0;
 
   background: url("../img/background.jpg") no-repeat;
-  font-family: "Helvetica Neue";
+  background-size: cover;
+  font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
 }
 
 div#menu-wrapper
@@ -31,7 +38,7 @@ div#menu-wrapper button
   display: inline-block;
   text-align: center;
 
-  margin-bottom: 50px;
+  margin-bottom: 16.66px;
 
   /* Button Text */
   font-weight: 300;
@@ -77,7 +84,7 @@ div#menu-wrapper #btc
 {
   font-size: 12px;
   line-height: 12px;
-  margin: 0 0 25px 0;
+  margin: 0 0 75px 0;
   padding: 0;
 }
 
@@ -85,14 +92,22 @@ div#receive-box-layer
 {
   position: absolute;
   float: left;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display:table;
+  -webkit-transition: opacity 1s linear;
+  z-index: 2;
+}
+
+.hidden
+{
+  opacity: 0;
 }
 
 div#receive-box-layer-wrapper
 {
-  width: 100%;
-  height: 100%;
-
-  background-color: rgba(0, 0, 0, 0.5);
+  height: 173.66px; /* 521 / 1080 */
 
   display: table-cell;
   text-align: center;
@@ -107,7 +122,8 @@ div#receive-box
   margin: auto;
   text-align: center;
 
-  font-size: 76.6px;
+  font-size: 40px;
+  line-height: 40px;
   color: #383838;
 
   /* Auto-generated */
@@ -122,6 +138,9 @@ div#receive-box
   box-shadow: 0 17px 38px rgba(0,0,0,.55);
   border: solid 1px #606060;
 }
+div#receive-box p {
+  margin: 15px;
+}
 
 input#amount
 {
@@ -134,9 +153,9 @@ input#amount
   /* Auto-generated */
   width: 69.07407407%; /*746px; */
   height: 14.72222222%; /*159px;*/
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
+  -webkit-border-radius: 3.33px;
+  -moz-border-radius: 3.33px;
+  border-radius: 3.33px;
   background-color: #fff;
   -webkit-box-shadow: 0 8px 27px rgba(0,0,0,.29);
   -moz-box-shadow: 0 8px 27px rgba(0,0,0,.29);

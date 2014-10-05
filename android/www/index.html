@@ -58,11 +58,21 @@
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script>
-          $("#receive-box-layer").hide();
+          $('#receive-box-layer').addClass('hidden');
 
           // Display the receive money tab when the right button is clicked
-          $("#open-receive-tab").click(function() {
-            $("#receive-box-layer").fadeIn();
+          function showAmountBox() {
+            $('#receive-box-layer').removeClass('hidden');
+          }
+          $('#open-receive-tab').click(function(e) {
+            e.preventDefault();
+            app.mode = 'receive';
+            showAmountBox();
+          });
+          $('#open-send-tab').click(function(e) {
+            e.preventDefault();
+            app.mode = 'send';
+            showAmountBox();
           });
         </script>
     </body>
