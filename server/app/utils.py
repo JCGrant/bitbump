@@ -1,6 +1,7 @@
 from app import db
 from app.models import User
 from random import choice, randint
+from config import WALLETS
 
 names = [
     "James",
@@ -75,10 +76,27 @@ def create_fake_users(amount):
             last_name = choice(names)
         email = "{}.{}@gmail.com".format(first_name.lower(), last_name.lower())
         phone_number = ''.join([str(randint(0, 9)) for i in range(11)])
+        wallet = choice(wallets)
 
-        User.create(first_name, last_name, email, phone_number)
+        User.create(first_name, last_name, email, phone_number,
+                    wallet['guid'], wallet['password'])
         print "Created: " + first_name, last_name
 
 def restart_db():
     db.drop_all()
     db.create_all()
+
+def init_db():
+    global names
+    db.create_all()
+
+    for wallet in WALLETS:
+        first_name, last_name = None, None
+        while first_name == last_name:
+            first_name = choice(names)
+            last_name = choice(names)
+        email = "{}.{}@gmail.com".format(first_name.lower(), last_name.lower())
+        phone_number = ''.join([str(randint(0, 9)) for i in range(11)])
+
+        User.create(first_name, last_name, email, phone_number,
+                    wallet['guid'], wallet['password'])

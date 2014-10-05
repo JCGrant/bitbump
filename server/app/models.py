@@ -1,6 +1,7 @@
 from app import db
 from block_chain import Wallet
-from config import BLOCKCHAIN_GUID, BLOCKCHAIN_PASSWORD
+from config import WALLET_1, WALLET_2
+
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -11,17 +12,20 @@ class User(db.Model):
     blockchain_guid = db.Column(db.String(36))
     blockchain_password = db.Column(db.String(64))
 
-    def __init__(self, first_name, last_name, email, phone_number):
+    def __init__(self, first_name, last_name, email, phone_number,
+                 blockchain_guid, blockchain_password):
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
         self.phone_number = phone_number
-        self.blockchain_guid = BLOCKCHAIN_GUID
-        self.blockchain_password = BLOCKCHAIN_PASSWORD
+        self.blockchain_guid = blockchain_guid
+        self.blockchain_password = blockchain_password
 
     @staticmethod
-    def create(first_name, last_name, email, phone_number):
-        u = User(first_name, last_name, email, phone_number)
+    def create(first_name, last_name, email, phone_number,
+               blockchain_guid, blockchain_password):
+        u = User(first_name, last_name, email, phone_number,
+                 blockchain_guid, blockchain_password)
         db.session.add(u)
         db.session.commit()
 
