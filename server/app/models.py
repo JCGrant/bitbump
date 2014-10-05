@@ -24,7 +24,7 @@ class User(db.Model):
 
     @staticmethod
     def create(first_name, last_name, email, phone_number,
-               blockchain_guid=None, blockchain_password=None, blockchain_address):
+               blockchain_guid, blockchain_password, blockchain_address):
         u = User(first_name, last_name, email, phone_number,
                  blockchain_guid, blockchain_password, blockchain_address)
         db.session.add(u)
