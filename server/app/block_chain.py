@@ -19,6 +19,8 @@ class Wallet:
 
     def get_balance(self):
         json = self.get_json_reponse('balance')
+        if 'error' in json:
+            return json['error'], 400
         return json['balance']
 
     def make_transaction(self, to_address, amount, from_address=None, fee=None, note=None):
