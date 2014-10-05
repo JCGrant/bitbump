@@ -12,7 +12,9 @@ def do_transaction():
     sender = User.get(sender_id)
     receiver = User.get(receiver_id)
 
-    sender.pay(receiver, amount)
+    response = sender.pay(receiver, amount)
+    if 'error' in response:
+        return response.get('error'), 400
 
     amount_in_pounds = amount * 209.5 / 100000000
     send_message("You successfully paid {} to {}!".format(
@@ -21,7 +23,7 @@ def do_transaction():
     send_message("You successfully received {} from {}!".format(
         amount_in_pounds, sender.first_name
     ), receiver)
-    return 'OK!'
+    return 'OK!', 200
 
 @app.route('/users', methods=["POST"])
 def create_new_user():
@@ -31,10 +33,10 @@ def create_new_user():
     phone_number = request.form['phone_number']
 
     User.create(first_name, last_name, email, phone_number)
-    return 'OK!'
+    return 'OK!', 200
 
 @app.route('/balance')
 def get_balance():
     user_id = request.args['user_id']
     user = User.get(user_id)
-    return str(user.get_balance())
+    return str(user.get_balance()), 200
