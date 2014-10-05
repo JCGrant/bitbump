@@ -27,3 +27,9 @@ proguard/
 
 #Apple files
 .DS_Store
+
+# Python files
+*.pyc
+
+# Databases
+*.db
