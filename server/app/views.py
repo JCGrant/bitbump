@@ -14,12 +14,12 @@ def do_transaction():
 
     sender.pay(receiver_id, amount)
 
-    send_message(sender, "You successfully paid {} to {}!".format(
+    send_message("You successfully paid {} to {}!".format(
         amount, receiver.first_name
-    ))
-    send_message(receiver, "You successfully received {} from {}!".format(
+    ), sender)
+    send_message("You successfully received {} from {}!".format(
         amount, sender.first_name
-    ))
+    ), receiver)
 
 @app.route('/users', methods=["POST"])
 def create_new_user():
@@ -34,4 +34,4 @@ def create_new_user():
 def get_balance():
     user_id = request.form['user_id']
     user = User.get(user_id)
-    return user.get_balance()
+    return str(user.get_balance())
