@@ -1,6 +1,5 @@
 from app import db
 from block_chain import Wallet
-from config import WALLET_1, WALLET_2
 
 
 class User(db.Model):
@@ -23,7 +22,7 @@ class User(db.Model):
 
     @staticmethod
     def create(first_name, last_name, email, phone_number,
-               blockchain_guid, blockchain_password):
+               blockchain_guid=None, blockchain_password=None):
         u = User(first_name, last_name, email, phone_number,
                  blockchain_guid, blockchain_password)
         db.session.add(u)
@@ -37,6 +36,17 @@ class User(db.Model):
     @staticmethod
     def get(id):
         return User.query.get(id)
+
+    def update(self, first_name=None, last_name=None, email=None, phone_number=None):
+        if first_name:
+            self.first_name = first_name
+        if last_name:
+            self.last_name = last_name
+        if email:
+            self.email = email
+        if phone_number:
+            self.phone_number = phone_number
+        db.session.commit()
 
     @property
     def wallet(self):

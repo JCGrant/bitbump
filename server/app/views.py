@@ -1,6 +1,7 @@
 from app import app
 from flask import request
 from models import User
+from twilio_ import send_message
 
 @app.route('/transaction/', methods=['POST'])
 def do_transaction():
@@ -8,9 +9,17 @@ def do_transaction():
     receiver_id = request.form['receiver']
     amount = int(request.form['amount'])
 
-    user = User.get(sender_id)
-    user.pay(receiver_id, amount)
-    return 'success'
+    sender = User.get(sender_id)
+    receiver = User.get(receiver_id)
+
+    sender.pay(receiver_id, amount)
+
+    send_message(sender, "You successfully paid {} to {}!".format(
+        amount, receiver.first_name
+    ))
+    send_message(receiver, "You successfully received {} from {}!".format(
+        amount, sender.first_name
+    ))
 
 @app.route('/users/', methods=["POST"])
 def create_new_user():
@@ -20,7 +29,6 @@ def create_new_user():
     phone_number = request.form['phone_number']
 
     User.create(first_name, last_name, email, phone_number)
-    return 'success'
 
 @app.route('/balance/')
 def get_balance():

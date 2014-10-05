@@ -76,7 +76,7 @@ def create_fake_users(amount):
             last_name = choice(names)
         email = "{}.{}@gmail.com".format(first_name.lower(), last_name.lower())
         phone_number = ''.join([str(randint(0, 9)) for i in range(11)])
-        wallet = choice(wallets)
+        wallet = WALLETS['James']
 
         User.create(first_name, last_name, email, phone_number,
                     wallet['guid'], wallet['password'])
@@ -90,13 +90,10 @@ def init_db():
     global names
     db.create_all()
 
-    for wallet in WALLETS:
-        first_name, last_name = None, None
-        while first_name == last_name:
-            first_name = choice(names)
-            last_name = choice(names)
-        email = "{}.{}@gmail.com".format(first_name.lower(), last_name.lower())
-        phone_number = ''.join([str(randint(0, 9)) for i in range(11)])
+    w1 = WALLETS['James']
+    User.create('James', 'Grant', 'jcg@mail.com', '+XXX',
+                w1['guid'], w1['password'])
 
-        User.create(first_name, last_name, email, phone_number,
-                    wallet['guid'], wallet['password'])
+    w2 = WALLETS['Nic']
+    User.create('Nic', 'Prettejohn', 'nkp@mail.com', '+XXX',
+                w2['guid'], w2['password'])
