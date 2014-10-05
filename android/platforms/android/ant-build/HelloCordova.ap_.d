@@ -35,15 +35,14 @@
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/img \
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/index.html \
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/js \
-/Users/nkp/projects/bitbump/android/platforms/android/assets/www/layout.html \
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/plugins \
-/Users/nkp/projects/bitbump/android/platforms/android/assets/www/css/index.css \
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/css/layout.css \
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/css/material-wfont.min.css \
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/css/material.min.css \
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/css/ripples.min.css \
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/img/background.jpg \
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/img/logo.png \
+/Users/nkp/projects/bitbump/android/platforms/android/assets/www/img/preload.gif \
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/js/index.js \
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/js/jquery.js \
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/js/zepto.js \
@@ -51,6 +50,7 @@
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/plugins/com.darktalker.cordova.webviewsetting \
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/plugins/com.synconset.cordovaHTTP \
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/plugins/org.apache.cordova.file \
+/Users/nkp/projects/bitbump/android/platforms/android/assets/www/plugins/org.apache.cordova.vibration \
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/plugins/com.chariotsolutions.nfc.plugin/www \
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/plugins/com.chariotsolutions.nfc.plugin/www/phonegap-nfc.js \
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/plugins/com.darktalker.cordova.webviewsetting/www \
@@ -80,4 +80,6 @@
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/plugins/org.apache.cordova.file/www/requestFileSystem.js \
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/plugins/org.apache.cordova.file/www/resolveLocalFileSystemURI.js \
 /Users/nkp/projects/bitbump/android/platforms/android/assets/www/plugins/org.apache.cordova.file/www/android/FileSystem.js \
+/Users/nkp/projects/bitbump/android/platforms/android/assets/www/plugins/org.apache.cordova.vibration/www \
+/Users/nkp/projects/bitbump/android/platforms/android/assets/www/plugins/org.apache.cordova.vibration/www/vibration.js \
 /Users/nkp/projects/bitbump/android/platforms/android/ant-build/AndroidManifest.xml \

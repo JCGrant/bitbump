@@ -15,6 +15,9 @@
     <feature name="WebviewSetting">
         <param name="android-package" value="com.darktalker.cordova.webviewsetting.WebviewSetting" />
     </feature>
+    <feature name="Vibration">
+        <param name="android-package" value="org.apache.cordova.vibration.Vibration" />
+    </feature>
     <name>Bitbump</name>
     <description>Simple payments using an NFC ring!
     </description>

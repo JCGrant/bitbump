@@ -19,7 +19,7 @@ body
 
   background: url("../img/background.jpg") no-repeat;
   background-size: 360px 567px;
-  font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 div#menu-wrapper
@@ -88,22 +88,24 @@ div#menu-wrapper #btc
   padding: 0;
 }
 
-div#receive-box-layer
+div#amount-box-layer
 {
   position: absolute;
   float: left;
   -webkit-transition: opacity 0.4s linear;
 }
 
-.hidden {
+.hidden
+{
   display: none;
 }
 
-.opacity {
+.opacity
+{
   opacity: 0;
 }
 
-div#receive-box-layer-wrapper
+div#dialog-box-wrapper
 {
   width: 360px;
   height: 567px;
@@ -117,7 +119,7 @@ div#receive-box-layer-wrapper
   z-index: 10;
 }
 
-div#receive-box
+div#dialog-box
 {
   display: block;
   margin: auto;
@@ -140,14 +142,7 @@ div#receive-box
   border: solid 1px #606060;
 }
 
-#receive p
-{
-  font-family: "Helvetica Neue";
-  font-size: 16px;
-  color: #383838;
-}
-
-input#amount
+div#dialog-box input#amount
 {
   text-align: center;
   margin: auto;
@@ -168,7 +163,7 @@ input#amount
   border: solid 1px #606060;
 }
 
-input#button
+div#dialog-box input#button
 {
   display: inline-block;
   text-align: center;
@@ -193,4 +188,16 @@ input#button
   background-image: -moz-linear-gradient(bottom, #225375, #44a6ea);
   background-image: -o-linear-gradient(bottom, #225375, #44a6ea);
   background-image: linear-gradient(to top, #225375, #44a6ea);
+}
+
+#instructions
+{
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+#payment-success
+{
+  z-index: 10;
 }

@@ -88,4 +88,5 @@
 /Users/nkp/projects/bitbump/android/platforms/android/ant-build/classes/org/apache/cordova/file/LocalFilesystemURL.class \
 /Users/nkp/projects/bitbump/android/platforms/android/ant-build/classes/org/apache/cordova/file/NoModificationAllowedException.class \
 /Users/nkp/projects/bitbump/android/platforms/android/ant-build/classes/org/apache/cordova/file/TypeMismatchException.class \
+/Users/nkp/projects/bitbump/android/platforms/android/ant-build/classes/org/apache/cordova/vibration/Vibration.class \
 /Users/nkp/projects/bitbump/android/platforms/android/ant-build/dexedLibs/classes-d1ec6452bdb2d34f50086b7a33e6239a.jar \

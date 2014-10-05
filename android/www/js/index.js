@@ -16,10 +16,12 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
 window.app = {
 
     // Fields
     mode: 'receive',
+    state: 'idle',
 
     // Application Constructor
     initialize: function() {
@@ -27,10 +29,10 @@ window.app = {
     },
 
     send: function(ring_id) {
-      alert('send function called');
       var sender_id, receiver_id;
-      var phone_id = 'phone';
+      var phone_id = 1;
       var amount = $('#amount').val();
+      amount = app.gbpToSatoshi(amount);
       if (app.mode === 'send') {
         sender_id = phone_id;
         receiver_id = ring_id;
@@ -38,21 +40,62 @@ window.app = {
         sender_id = ring_id;
         receiver_id = phone_id;
       }
-      alert('sending');
+      $('#wait-for-ring').addClass('hidden');
+      console.log($('#wait-for-ring').attr('class'));
       cordovaHTTP.post('http://188.226.239.28:5000/transaction',
           {
-            'sender_id': sender_id,
-            'receiver_id': receiver_id,
+            'sender': sender_id,
+            'receiver': receiver_id,
             'amount': amount
           }, {},
           function (data) {
-            alert(data);
+            app.state = 'finished';
+            console.log('finished');
+            $('#payment-success').removeClass('hidden');
+            setTimeout(function () {
+              app.state = 'idle';
+              $('#payment-success').addClass('hidden');
+              $('#amount-box-layer').addClass('hidden').addClass('opacity');
+              $('#confirm-amount').removeClass('hidden');
+              app.updateBalance();
+            }, 2000);
+            $('#wait-for-ring').addClass('hidden');
           },
           function (data) {
-            alert(data);
+            app.state = 'error';
+            alert(JSON.stringify(data));
+            $('#wait-for-ring').addClass('hidden');
+            $('#payment-failure').removeClass('hidden');
+            setTimeout(function () {
+              app.state = 'idle';
+              $('#payment-failure').addClass('hidden');
+              $('#amount-box-layer').addClass('hidden').addClass('opacity');
+              $('#confirm-amount').removeClass('hidden');
+            }, 2000);
+
           }
       );
-      alert('end of function');
+      
+      app.updateBalance();
+      app.state = 'waiting-confirm';
+    },
+
+    updateBalance: function() {
+      cordovaHTTP.get('http://188.226.239.28:5000/balance',
+        {
+          'user_id': 1,
+        }, {},
+        function balanceSuccess(response) {
+          $('#value').text('£' + parseInt(response.data) * 209.05 * 1000000);
+          $('#btc').text('(' + response.data + ' BTC)');
+        },
+        function balanceFailure(response) {
+          alert(JSON.stringify(response));
+      });
+    },
+
+    gbpToSatoshi: function (gbp) {
+      return Math.floor(gbp * 1000000 / 209.05);
     },
 
     // Bind Event Listeners
@@ -72,22 +115,28 @@ window.app = {
         // Read NDEF formatted NFC Tags
         nfc.addNdefListener (
             function nfcListener (nfcEvent) {
+              if (app.state != 'waiting-ring') {
+                alert("NOT READY");
+                 return;
+               }
+               navigator.vibrate(0.2);
                 var tag = nfcEvent.tag,
                     ndefMessage = tag.ndefMessage,
                     sender_id;
 
                 var id = nfc.bytesToString(ndefMessage[0].payload).substring(3);
-                alert(id);
                 app.send(id);
+
             }, 
             function nfcSuccess() { // success callback
-                alert("Waiting for NDEF tag");
+                //alert("Waiting for NDEF tag");
             },
             function nfcError (error) { // error callback
                 alert("Error adding NDEF listener " + JSON.stringify(error));
             }
         );
-        alert('nfc ready');
+        //alert('nfc ready');
+        app.updateBalance();
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {

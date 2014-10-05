@@ -88,8 +88,7 @@ div#menu-wrapper #btc
   padding: 0;
 }
 
-div#receive-box-layer,
-div#send-box-layer
+div#amount-box-layer
 {
   position: absolute;
   float: left;
@@ -196,4 +195,9 @@ div#dialog-box input#button
   font-weight: 300;
   font-size: 12px;
   line-height: 14px;
+}
+
+#payment-success
+{
+  z-index: 10;
 }

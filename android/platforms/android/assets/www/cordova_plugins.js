@@ -20,6 +20,14 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/org.apache.cordova.vibration/www/vibration.js",
+        "id": "org.apache.cordova.vibration.notification",
+        "merges": [
+            "navigator.notification",
+            "navigator"
+        ]
+    },
+    {
         "file": "plugins/org.apache.cordova.file/www/DirectoryEntry.js",
         "id": "org.apache.cordova.file.DirectoryEntry",
         "clobbers": [
@@ -172,6 +180,7 @@ module.exports.metadata =
     "com.chariotsolutions.nfc.plugin": "0.6.0",
     "com.synconset.cordovaHTTP": "0.1.3",
     "com.darktalker.cordova.webviewsetting": "0.1.0",
+    "org.apache.cordova.vibration": "0.3.12-dev",
     "org.apache.cordova.file": "1.3.1"
 }
 // BOTTOM OF METADATA

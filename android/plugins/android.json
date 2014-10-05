@@ -25,6 +25,10 @@
                         {
                             "xml": "<feature name=\"WebviewSetting\"><param name=\"android-package\" value=\"com.darktalker.cordova.webviewsetting.WebviewSetting\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Vibration\"><param name=\"android-package\" value=\"org.apache.cordova.vibration.Vibration\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -38,6 +42,10 @@
                         },
                         {
                             "xml": "<uses-feature android:name=\"android.hardware.nfc\" android:required=\"false\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.VIBRATE\" />",
                             "count": 1
                         }
                     ],
@@ -59,6 +67,9 @@
             "PACKAGE_NAME": "me.bit_bump.bitbump"
         },
         "com.darktalker.cordova.webviewsetting": {
+            "PACKAGE_NAME": "me.bit_bump.bitbump"
+        },
+        "org.apache.cordova.vibration": {
             "PACKAGE_NAME": "me.bit_bump.bitbump"
         }
     },

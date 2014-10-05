@@ -18,59 +18,86 @@
     under the License.
 -->
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="msapplication-tap-highlight" content="no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-                <!--<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=1080px, height=1920px, target-densitydpi=high-dpi" />-->
+  <head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="css/layout.css" />
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <title>BitBump</title>
+  </head>
+  <body>
+    <div id="content">
+      <!-- Main Menu -->
+      <div id="menu-wrapper">
+        <p id="balance">Balance</p>
+        <p id="value">&pound;18.13</p>
+        <p id="btc">(0.08238 BTC)</p>
+        <p><button href="#" id="open-receive-tab">Receive</button></p>
+        <p><button href="#" id="open-send-tab">Send</button></p>
+      </div>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalabe=no" />
-        
-        <!--<link rel="stylesheet" type="text/css" href="css/material.min.css" />-->
-        <link rel="stylesheet" type="text/css" href="css/material-wfont.min.css" />
-        <!--<link rel="stylesheet" type="text/css" href="css/ripples.min.css" />-->
-        <link rel="stylesheet" type="text/css" href="css/layout.css" />
-        <script type="text/javascript" src="js/jquery.js"></script>
-        <title>BitBump</title>
-    </head>
-    <body>
-      <div id="content">
-          <div id="menu-wrapper">
-            <p id="balance">Balance</p>
-            <p id="value">&pound;18.13</p>
-            <p id="btc">(0.08238 BTC)</p>
-            <p><button href="#" id="open-receive-tab">Receive</button></p>
-            <p><button href="#" id="open-send-tab">Send</button></p>
-          </div>
-          <div id="receive-box-layer" class="hidden opacity">
-            <div id="receive-box-layer-wrapper">
-              <div id="receive-box">
-                <form name="receive">
-                  <p>Amount (&pound;)</p>
-                  <p><input id="amount" type="text" placeholder="&pound;0.00" /></p>
-                  <p><input id="button" type="submit" value="Receive" /></p>
-                </form>
+      <!-- Amount Box -->
+      <div id="amount-box-layer" class="hidden opacity">
+        <div id="dialog-box-wrapper">
+          <div id="dialog-box">
+            <form id="amount-form">
+              <p>Amount (&pound;)</p>
+              <p><input id="amount" type="tel" placeholder="&pound;0.00" /></p>
+              <div id="confirm-amount">
+                <p><input id="button" type="submit" value="Receive" /></p>
               </div>
-            </div>
+              <div id="wait-for-ring" class="hidden">
+                <p id="instructions">Bump the payers NFC Ring against this device</p>
+                <img src="img/preload.gif" />
+              </div>
+              <div id="payment-success" class="hidden">
+                <h3>Payment success!</h3>
+              </div>
+              <div id="payment-failure" class="hidden">
+                <h3>Payment failure!</h3>
+              </div>
+            </form>
           </div>
         </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script>
+      </div>
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script>
+      // Display the receive money tab when clicked
+      $('#open-receive-tab').click(function(e) {
+        app.mode = 'receive';
+        $('#button').attr('value', 'Receive');
+        $('#amount-box-layer').removeClass('hidden')
+        window.requestAnimationFrame(function() {
+          $('#amount-box-layer').removeClass('opacity');
+        });
+      });
 
-          // Display the receive money tab when the right button is clicked
-          $('#open-receive-tab').click(function(e) {
-            app.mode = 'receive';
-            $('#receive-box-layer').removeClass('hidden')
-            window.requestAnimationFrame(function() {
-              $('#receive-box-layer').removeClass('opacity');
-            });
-          });
-          $('#open-send-tab').click(function(e) {
-            app.mode = 'send';
-            $('#receive-box-layer').css({'display': ''}).css({'opacity': ''});
-          });
-        </script>
-    </body>
+      // Display the send money tab when clicked
+      $('#open-send-tab').click(function(e) {
+        app.mode = 'send';
+        $('#button').attr('value', 'Pay');
+        $('#amount-box-layer').removeClass('hidden')
+        window.requestAnimationFrame(function() {
+          $('#amount-box-layer').removeClass('opacity');
+        });
+      });
+
+      // Start waiting for the ring when the form is submitted
+      $('#amount-form').submit(function(e) {
+        e.preventDefault()
+        $('#wait-for-ring').removeClass('hidden');
+        $('#confirm-amount').addClass('hidden');
+
+        // TODO: change app to "waiting" state
+        app.state = 'waiting-ring';
+      });
+
+
+    </script>
+  </body>
 </html>
