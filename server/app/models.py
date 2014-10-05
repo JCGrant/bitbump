@@ -31,7 +31,7 @@ class User(db.Model):
         db.session.commit()
 
     @staticmethod
-    def get(self, id):
+    def get(id):
         return User.query.get(id)
 
     @property

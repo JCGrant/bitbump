@@ -7,12 +7,10 @@ def do_transaction():
     sender_id = request.form['sender']
     receiver_id = request.form['receiver']
     amount = int(request.form['amount'])
-    password = request.form['password']
 
     user = User.get(sender_id)
     user.pay(receiver_id, amount)
     return 'success'
-
 
 @app.route('/users/', methods=["POST"])
 def create_new_user():
