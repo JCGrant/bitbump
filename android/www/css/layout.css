@@ -19,7 +19,7 @@ body
 
   background: url("../img/background.jpg") no-repeat;
   background-size: 360px 567px;
-  font-family:"Roboto";
+  font-family: 'Roboto', sans-serif;
 }
 
 div#menu-wrapper
@@ -164,7 +164,8 @@ div#dialog-box input#amount
   border: solid 1px #606060;
 }
 
-div#dialog-box input#button
+div#dialog-box input#receive-button,
+div#dialog-box input#send-button
 {
   display: inline-block;
   text-align: center;
