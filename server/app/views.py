@@ -32,6 +32,6 @@ def create_new_user():
 
 @app.route('/balance')
 def get_balance():
-    user_id = request.form['user_id']
+    user_id = request.args['user_id']
     user = User.get(user_id)
     return str(user.get_balance())
