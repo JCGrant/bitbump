@@ -27,7 +27,6 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalabe=no" />
         
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
         <!--<link rel="stylesheet" type="text/css" href="css/material.min.css" />-->
         <link rel="stylesheet" type="text/css" href="css/material-wfont.min.css" />
         <!--<link rel="stylesheet" type="text/css" href="css/ripples.min.css" />-->
@@ -41,12 +40,12 @@
             <p id="balance">Balance</p>
             <p id="value">&pound;18.13</p>
             <p id="btc">(0.08238 BTC)</p>
-            <p><button id="open-receive-tab">Receive</button></p>
-            <p><button id="open-send-tab">Send</button></p>
+            <p><button href="#" id="open-receive-tab">Receive</button></p>
+            <p><button href="#" id="open-send-tab">Send</button></p>
           </div>
-          <div id="receive-box-layer">
+          <div id="receive-box-layer" style="opacity: 0">
             <div id="receive-box-layer-wrapper">
-              <div id="receive-box" style="top:-1000px">
+              <div id="receive-box">
                 <form name="receive">
                   <p>Amount (&pound;)</p>
                   <p><input id="amount" type="text" placeholder="&pound;0.00" /></p>
@@ -59,19 +58,15 @@
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script>
-          $('#receive-box-layer').hide();
 
           // Display the receive money tab when the right button is clicked
-          $('#open-receive-tab').click(function() {
-            $('#receive-box-layer').fadeIn();
-          });
           $('#open-receive-tab').click(function(e) {
-            e.preventDefault();
             app.mode = 'receive';
+            $('#receive-box-layer').css({'opacity': 1});
           });
           $('#open-send-tab').click(function(e) {
-            e.preventDefault();
             app.mode = 'send';
+            $('#receive-box-layer').css({'opacity': 1});
           });
         </script>
     </body>

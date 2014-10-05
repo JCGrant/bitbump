@@ -95,11 +95,6 @@ div#receive-box-layer
   -webkit-transition: opacity 1s linear;
 }
 
-.hidden
-{
-  opacity: 0;
-}
-
 div#receive-box-layer-wrapper
 {
   width: 360px;
