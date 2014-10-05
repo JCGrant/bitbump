@@ -14,11 +14,12 @@ def do_transaction():
 
     sender.pay(receiver, amount)
 
+    amount_in_pounds = amount * 209.5 / 100000000
     send_message("You successfully paid {} to {}!".format(
-        amount, receiver.first_name
+        amount_in_pounds, receiver.first_name
     ), sender)
     send_message("You successfully received {} from {}!".format(
-        amount, sender.first_name
+        amount_in_pounds, sender.first_name
     ), receiver)
     return 'OK!'
 
