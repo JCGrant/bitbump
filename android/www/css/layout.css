@@ -18,7 +18,7 @@ body
   padding: 0;
 
   background: url("../img/background.jpg") no-repeat;
-  background-size: cover;
+  background-size: 360px 567px;
   font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
 }
 
