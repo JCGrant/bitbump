@@ -26,6 +26,14 @@ window.app = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();
+        var btc = window.localStorage.getItem('btc');
+        if (btc != null) {
+          $('#btc').text(btc);
+        }
+        var gbp = window.localStorage.getItem('gbp');
+        if (gbp != null) {
+          $('#value').text(gbp);
+        }
     },
 
     send: function(ring_id) {
@@ -80,14 +88,25 @@ window.app = {
       app.state = 'waiting-confirm';
     },
 
+
     updateBalance: function() {
+      var roundBTC = function (btc) {
+        return Math.round(btc * 100 * 1000000) / (100 * 1000000);
+      };
+      var roundGBP = function (gbp) {
+        return Math.round(gbp * 100) / 100;
+      }
       cordovaHTTP.get('http://188.226.239.28:5000/balance',
         {
           'user_id': 1,
         }, {},
         function balanceSuccess(response) {
-          $('#value').text('£' + parseInt(response.data) * 209.05 / 100000000);
-          $('#btc').text('(' + parseInt(response.data) / 100000000 + ' BTC)');
+          var gbp = '£' + roundGBP(parseInt(response.data) * 209.05 / 100000000);
+          var btc = '(' + roundBTC(parseInt(response.data) / 100000000) + ' BTC)';
+          $('#value').text(gbp);
+          $('#btc').text(btc);
+          window.localStorage.setItem('btc', btc);
+          window.localStorage.setItem('gbp', gbp);
         },
         function balanceFailure(response) {
           alert(JSON.stringify(response));
@@ -116,7 +135,7 @@ window.app = {
         nfc.addNdefListener (
             function nfcListener (nfcEvent) {
               if (app.state != 'waiting-ring') {
-                alert("NOT READY");
+                 console.log("NOT READY");
                  return;
                }
                navigator.vibrate(0.2);
@@ -126,7 +145,6 @@ window.app = {
 
                 var id = nfc.bytesToString(ndefMessage[0].payload).substring(3);
                 app.send(id);
-
             }, 
             function nfcSuccess() { // success callback
                 //alert("Waiting for NDEF tag");
@@ -135,8 +153,10 @@ window.app = {
                 alert("Error adding NDEF listener " + JSON.stringify(error));
             }
         );
-        //alert('nfc ready');
-        app.updateBalance();
+
+        setInterval(function () {
+          app.updateBalance();
+        }, 5000);
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -147,7 +167,7 @@ window.app = {
         //listeningElement.setAttribute('style', 'display:none;');
         //receivedElement.setAttribute('style', 'display:block;');
 
-        //console.log('Received Event: ' + id);
+        console.log('Received Event: ' + id);
     }
 };
 

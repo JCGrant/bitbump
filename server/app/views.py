@@ -1,9 +1,19 @@
 # -*- coding: utf-8 -*-
-
+import os
 from app import app
 from flask import request
 from models import User
 from twilio_ import send_message
+import sendgrid
+sg = sendgrid.SendGridClient(os.environ['SGUSER'], os.environ['SGPW'])
+
+def send_email(receiver, text):
+    message = sendgrid.Mail()
+    message.add_to('%s %s <%s>' % (receiver.first_name, receiver.last_name, receiver.email))
+    message.set_subject('Payment Confirmation!')
+    message.set_text(text)
+    message.set_from('BitBump <info@bit-bump.me>')
+    status, msg = sg.send(message)
 
 @app.route('/transaction', methods=['POST'])
 def do_transaction():
@@ -19,12 +29,23 @@ def do_transaction():
         return response.get('error'), 400
 
     amount_in_pounds = amount * 209.5 / 100000000
+
     send_message("You successfully paid £{:.2f} to {}!".format(
         amount_in_pounds, receiver.first_name
     ), sender)
+    
+    send_email("You successfully paid £{:.2f} to {}!".format(
+        amount_in_pounds, receiver.first_name
+    ), sender)
+
     send_message("You successfully received £{:.2f} from {}!".format(
         amount_in_pounds, sender.first_name
     ), receiver)
+
+    send_email("You successfully received £{:.2f} from {}!".format(
+        amount_in_pounds, sender.first_name
+    ), receiver)
+
     return 'OK!', 200
 
 @app.route('/users', methods=["POST"])

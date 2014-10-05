@@ -33,8 +33,8 @@
       <!-- Main Menu -->
       <div id="menu-wrapper">
         <p id="balance">Balance</p>
-        <p id="value">&pound;18.13</p>
-        <p id="btc">(0.08238 BTC)</p>
+        <p id="value">&pound;0.00</p>
+        <p id="btc">(0.0000000 BTC)</p>
         <p><button href="#" id="open-receive-tab">Receive</button></p>
         <p><button href="#" id="open-send-tab">Send</button></p>
       </div>
@@ -67,6 +67,16 @@
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script>
+      // Cancel
+      $("#dialog-box-wrapper").click(function(e) {
+        if(e.target == $('#dialog-box-wrapper')[0]) {
+          app.state = 'idle';
+          $('#amount-box-layer').addClass('hidden').addClass('opacity');
+          $('#wait-for-ring').addClass('hidden');
+          $('#confirm-amount').removeClass('hidden');
+        }
+      });
+
       // Display the receive money tab when clicked
       $('#open-receive-tab').click(function(e) {
         app.mode = 'receive';

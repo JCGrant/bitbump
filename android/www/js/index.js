@@ -26,11 +26,13 @@ window.app = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();
-        if (window.localStorage.getItem('btc')) {
-          $('#btc').text(window.localStorage.getItem('btc'));
+        var btc = window.localStorage.getItem('btc');
+        if (btc != null) {
+          $('#btc').text(btc);
         }
-        if (window.localStorage.getItem('gbp')) {
-          $('#btc').text(window.localStorage.getItem('gbp'));
+        var gbp = window.localStorage.getItem('gbp');
+        if (gbp != null) {
+          $('#value').text(gbp);
         }
     },
 
@@ -81,23 +83,30 @@ window.app = {
 
           }
       );
-      
+
       app.updateBalance();
       app.state = 'waiting-confirm';
     },
 
+
     updateBalance: function() {
+      var roundBTC = function (btc) {
+        return Math.round(btc * 100 * 1000000) / (100 * 1000000);
+      };
+      var roundGBP = function (gbp) {
+        return Math.round(gbp * 100) / 100;
+      }
       cordovaHTTP.get('http://188.226.239.28:5000/balance',
         {
           'user_id': 1,
         }, {},
         function balanceSuccess(response) {
-          var gbp = '£' + parseInt(response.data) * 209.05 / 100000000;
-          var btc = '(' + parseInt(response.data) / 100000000 + ' BTC)';
+          var gbp = '£' + roundGBP(parseInt(response.data) * 209.05 / 100000000);
+          var btc = '(' + roundBTC(parseInt(response.data) / 100000000) + ' BTC)';
           $('#value').text(gbp);
           $('#btc').text(btc);
-          document.localStorage.setItem('btc', btc);
-          document.localStorage.setItem('gbp', gbp);
+          window.localStorage.setItem('btc', btc);
+          window.localStorage.setItem('gbp', gbp);
         },
         function balanceFailure(response) {
           alert(JSON.stringify(response));
@@ -126,7 +135,7 @@ window.app = {
         nfc.addNdefListener (
             function nfcListener (nfcEvent) {
               if (app.state != 'waiting-ring') {
-                alert("NOT READY");
+                 console.log("NOT READY");
                  return;
                }
                navigator.vibrate(0.2);
@@ -137,7 +146,7 @@ window.app = {
                 var id = nfc.bytesToString(ndefMessage[0].payload).substring(3);
                 app.send(id);
 
-            }, 
+            },
             function nfcSuccess() { // success callback
                 //alert("Waiting for NDEF tag");
             },
@@ -145,10 +154,18 @@ window.app = {
                 alert("Error adding NDEF listener " + JSON.stringify(error));
             }
         );
+
+        if (window.localStorage.getItem('btc')) {
+          $('#btc').text(window.localStorage.getItem('btc'));
+        }
+        if (window.localStorage.getItem('gbp')) {
+          $('#gbp').text(window.localStorage.getItem('gbp'));
+        }
+
         //alert('nfc ready');
-        setInterval(function () {
-          app.updateBalance();
-        }, 5000);
+        app.updateBalance();
+
+        setInterval(app.updateBalance, 5000);
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -159,7 +176,7 @@ window.app = {
         //listeningElement.setAttribute('style', 'display:none;');
         //receivedElement.setAttribute('style', 'display:block;');
 
-        //console.log('Received Event: ' + id);
+        console.log('Received Event: ' + id);
     }
 };
 
